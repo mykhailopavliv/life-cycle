@@ -10,10 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_23_080521) do
+ActiveRecord::Schema.define(version: 2018_09_23_110904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "products", force: :cascade do |t|
     t.string "name"
@@ -27,6 +32,8 @@ ActiveRecord::Schema.define(version: 2018_09_23_080521) do
     t.string "net_weight"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "cart_id"
+    t.index ["cart_id"], name: "index_products_on_cart_id"
   end
 
 end
